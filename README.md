@@ -1,1 +1,2 @@
-#wibmo-3ds-20-sdk
+Wibmo SDK Integration (iOS)
+This document describes the steps to integrate the Wibmo SDK with your iOS application.

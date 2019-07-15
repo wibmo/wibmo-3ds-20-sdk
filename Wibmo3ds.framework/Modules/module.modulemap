@@ -1,0 +1,11 @@
+framework module Wibmo3ds {
+  umbrella header "Wibmo3ds-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module Wibmo3ds.Swift {
+    header "Wibmo3ds-Swift.h"
+    requires objc
+}
