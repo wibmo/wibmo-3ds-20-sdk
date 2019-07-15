@@ -27,17 +27,14 @@ Pod::Spec.new do |s|
     
                        DESC
 
-  s.homepage         = 'https://www.wibmo.com'
+  s.homepage         = 'https://github.com/wibmo/wibmo-3ds-20-sdk.git'
   s.license          = { :type => 'Apache 2.0', :file => 'LICENSE' }
   s.author           = { 'Wibmo Inc' => 'ios@wibmo.com' }
   s.source           = { :git => 'https://github.com/wibmo/wibmo-3ds-20-sdk.git', :tag => s.version.to_s}
   s.ios.deployment_target = '10.0'
-  s.source_files = 'Wibmo3ds/Classes/**/*'
+  S.swift_version = '5.0'
   
-  s.resource_bundles = {
-     'Wibmo3ds' => ['Wibmo3ds/Assets/*.*']
-  }
-  
+  S.vendored_frameworks = 'Wibmo3ds.framework'
   s.frameworks = 'UIKit', 'MapKit', 'AdSupport', 'CoreLocation'
   
   s.dependency 'DeviceKit', '~> 2.0'
