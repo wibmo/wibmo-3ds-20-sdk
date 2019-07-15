@@ -32,9 +32,9 @@ Pod::Spec.new do |s|
   s.author           = { 'Wibmo Inc' => 'ios@wibmo.com' }
   s.source           = { :git => 'https://github.com/wibmo/wibmo-3ds-20-sdk.git', :tag => s.version.to_s}
   s.ios.deployment_target = '10.0'
-  S.swift_version = '5.0'
+  s.swift_version = '5.0'
   
-  S.vendored_frameworks = 'Wibmo3ds.framework'
+  s.vendored_frameworks = 'Wibmo3ds.framework'
   s.frameworks = 'UIKit', 'MapKit', 'AdSupport', 'CoreLocation'
   
   s.dependency 'DeviceKit', '~> 2.0'
