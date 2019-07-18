@@ -1,11 +1,10 @@
 # Wibmo3ds SDK 
-The SDK is designed as per the specification of EMV 3-D Secure Protocol and Core Functions Specification version 2.1.0                      
-
-You need an license key from Wibmo Inc. to use the SDK in your apps.
+The SDK is designed as per the specification of EMVCO 3-D Secure Protocol and Core Functions Specification version 2.1.0                      
+**You need an license key from Wibmo Inc. to use the SDK in your apps.**
 
 Contact us at [ios@wibmo.com](ios@wibmo.com) for obtaining license key.
-                        
-Wibmo3ds SDK is certified by EMVCO which can be found at [EMVCO Certification](https://www.emvco.com/wp-content/uploads/approved_products/uploaded/loa/3DS_LOA_SDK_WIBM_020100_00128_23Apr19.pdf)
+
+Wibmo3ds SDK is certified by EMVCO which can be found at _[EMVCO Certification](https://www.emvco.com/wp-content/uploads/approved_products/uploaded/loa/3DS_LOA_SDK_WIBM_020100_00128_23Apr19.pdf)_
 
 ## Integration
 Steps to integrate the Wibmo3ds SDK with your iOS application.
