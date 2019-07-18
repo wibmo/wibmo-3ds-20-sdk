@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-                        The SDK is designed as per the specification of EMV 3-D Secure Protocol and Core Functions Specification version 2.1.0
-                        You need an license from Wibmo Inc. to use the SDK in your apps.
-                        Contact us @ ios@wibmo.com for obtaining license.
+                        The SDK is designed as per the specification of EMV 3-D Secure Protocol and Core Functions Specification version 2.1.0                      
+                        You need an license key from Wibmo Inc. to use the SDK in your apps.
+                        Contact us at [ios@wibmo.com] (ios@wibmo.com) for obtaining license key.
                         
-                        Wibmo3ds is certified by EMVCO which can be found at
-                        https://www.emvco.com/wp-content/uploads/approved_products/uploaded/loa/3DS_LOA_SDK_WIBM_020100_00128_23Apr19.pdf
+                        Wibmo3ds SDK is certified by EMVCO which can be found at
+                        [EMVCO Certification] (https://www.emvco.com/wp-content/uploads/approved_products/uploaded/loa/3DS_LOA_SDK_WIBM_020100_00128_23Apr19.pdf)
     
                        DESC
 
