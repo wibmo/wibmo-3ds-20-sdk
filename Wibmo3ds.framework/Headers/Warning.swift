@@ -9,7 +9,7 @@ import Foundation
 
 @objc public class Warning : NSObject {
     
-    public enum Severity {
+    @objc public enum Severity: Int {
         case LOW
         case MEDIUM
         case HIGH
@@ -28,7 +28,7 @@ import Foundation
     public var severity: Severity
     
     
-    public init(id: String, message: String, severity: Severity) {
+    @objc public init(id: String, message: String, severity: Severity) {
         self.id = id
         self.message = message
         self.severity = severity

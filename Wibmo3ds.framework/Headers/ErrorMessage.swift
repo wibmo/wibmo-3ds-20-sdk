@@ -9,39 +9,39 @@ import Foundation
 
 let kErrorComponent = "C"
 
-public class ErrorMessage: Codable, Error {
+@objc public class ErrorMessage: NSObject, Codable, Error {
     
-    public var threeDSServerTransID: String
-    public var errorCode: String
-    public var errorDescription: String
-    public var errorDetail: String?
-    public var acsTransID: String?
-    public var errorComponent: String?
-    public var errorMessageType: String?
-    public var messageType: String?
-    public var messageVersion: String?
-    public var sdkTransID: String?
+    @objc public var threeDSServerTransID: String
+    @objc public var errorCode: String
+    @objc public var errorDescription: String
+    @objc public var errorDetail: String?
+    @objc public var acsTransID: String?
+    @objc public var errorComponent: String?
+    @objc public var errorMessageType: String?
+    @objc public var messageType: String?
+    @objc public var messageVersion: String?
+    @objc public var sdkTransID: String?
 
-    public init(_ transactionID: String, _ errorCode: String, _ errorDescription: String, _ errorDetail: String?) {
+    @objc public init(_ transactionID: String, _ errorCode: String, _ errorDescription: String, _ errorDetail: String?) {
         self.threeDSServerTransID = transactionID
         self.errorCode = errorCode
         self.errorDescription = errorDescription
         self.errorDetail = errorDetail
     }
     
-    public func getTransactionID() -> String {
+    @objc public func getTransactionID() -> String {
         return threeDSServerTransID
     }
     
-    public func getErrorCode() -> String {
+    @objc public func getErrorCode() -> String {
         return errorCode
     }
     
-    public func getErrorDescription() -> String {
+    @objc public func getErrorDescription() -> String {
         return errorDescription
     }
     
-    public func getErrorDetails() -> String? {
+    @objc public func getErrorDetails() -> String? {
         return errorDetail
     }
 }

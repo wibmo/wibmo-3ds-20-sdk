@@ -13,20 +13,28 @@ import Foundation
 
 @objc public class UiCustomization : NSObject {
     
-    private var btnCustomizations: Dictionary<String, ButtonCustomization>?
-    private var tbrCustomization: ToolbarCustomization?
-    private var lblCustomization: LabelCustomization?
-    private var txtBxCustomization: TextBoxCustomization?
+    private var btnCustomizations: Dictionary<String, ButtonCustomization>
+    private var tbrCustomization: ToolbarCustomization
+    private var lblCustomization: LabelCustomization
+    private var txtBxCustomization: TextBoxCustomization
     
-    public init(_ btnCustomizations: Dictionary<String, ButtonCustomization>? = nil,
-                _ tbrCustomization: ToolbarCustomization? = nil,
-                _ lblCustomization: LabelCustomization? = nil,
-                _ txtBxCustomization: TextBoxCustomization? = nil
+    @objc public init(_ btnCustomizations: Dictionary<String, ButtonCustomization> ,
+                _ tbrCustomization: ToolbarCustomization,
+                _ lblCustomization: LabelCustomization,
+                _ txtBxCustomization: TextBoxCustomization
         ) {
         self.btnCustomizations = btnCustomizations
         self.tbrCustomization = tbrCustomization
         self.lblCustomization = lblCustomization
         self.txtBxCustomization = txtBxCustomization
+    }
+    
+    @objc public enum ButtonTypeInt: Int {
+        case VERIFY = 0
+        case CONTINUE = 1
+        case NEXT = 2
+        case CANCEL = 3
+        case RESEND = 4
     }
     
     public enum ButtonType: String {
@@ -38,49 +46,64 @@ import Foundation
     }
     
     /// Sets the attributes of a ButtonCustomization object for an implementer-specific button type.
-    public func setButtonCustomization(_ buttonCustomization: ButtonCustomization, _ buttonType: ButtonType) throws {
-        if btnCustomizations == nil {
-            btnCustomizations = Dictionary<String, ButtonCustomization>()
-        }
-        btnCustomizations![buttonType.rawValue] = buttonCustomization
+    @objc public func setButtonCustomization(_ buttonCustomization: ButtonCustomization, _ buttonType: ButtonTypeInt) throws {
+        let btnType = self.buttonType(intType: buttonType)
+        btnCustomizations[btnType.rawValue] = buttonCustomization
     }
     
     /// Sets the attributes of a ToolbarCustomization object.
-    public func setToolbarCustomization(_ toolbarCustomization: ToolbarCustomization) throws {
+    @objc public func setToolbarCustomization(_ toolbarCustomization: ToolbarCustomization) throws {
         self.tbrCustomization = toolbarCustomization
     }
     
     /// Sets the attributes of a LabelCustomization object.
-    public func setLabelCustomization(_ labelCustomization: LabelCustomization) throws {
+    @objc public func setLabelCustomization(_ labelCustomization: LabelCustomization) throws {
         self.lblCustomization = labelCustomization
     }
     
     /// Sets the attributes of a TextBoxCustomization object.
-    public func setTextBoxCustomization(_ textBoxCustomization: TextBoxCustomization) throws {
+    @objc public func setTextBoxCustomization(_ textBoxCustomization: TextBoxCustomization) throws {
         self.txtBxCustomization = textBoxCustomization
     }
     
     /// Returns a ButtonCustomization object.
-    public func getButtonCustomization(_ buttonType: ButtonType) throws -> ButtonCustomization? {
-        if btnCustomizations == nil {
-            return nil
+    @objc public func getButtonCustomization(_ buttonType: ButtonTypeInt) throws -> ButtonCustomization {
+        
+        let btnType = self.buttonType(intType: buttonType)
+        if let customization = btnCustomizations[btnType.rawValue] {
+            return customization
         } else {
-            return btnCustomizations![buttonType.rawValue]
+            throw InvalidInputException(message: "", cause: "")
         }
     }
     
     /// Returns a ToolbarCustomization object.
-    public func getToolbarCustomization() -> ToolbarCustomization? {
+    @objc public func getToolbarCustomization() -> ToolbarCustomization {
         return tbrCustomization
     }
     
     /// Returns a LabelCustomization object.
-    public func getLabelCustomization() -> LabelCustomization? {
+    @objc public func getLabelCustomization() -> LabelCustomization {
         return lblCustomization
     }
     
     /// Returns a TextBoxCustomization object.
-    public func getTextBoxCustomization() -> TextBoxCustomization? {
+    @objc public func getTextBoxCustomization() -> TextBoxCustomization {
         return txtBxCustomization
+    }
+    
+    private func buttonType(intType: ButtonTypeInt) -> ButtonType {
+        switch intType {
+        case .VERIFY:
+            return ButtonType.VERIFY
+        case .CONTINUE:
+            return ButtonType.CONTINUE
+        case .NEXT:
+            return ButtonType.NEXT
+        case .CANCEL:
+            return ButtonType.CANCEL
+        case .RESEND:
+            return ButtonType.RESEND
+        }
     }
 }

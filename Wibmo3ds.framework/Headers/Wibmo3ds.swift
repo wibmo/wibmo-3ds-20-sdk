@@ -58,9 +58,9 @@ private class Wibmo3dsSetup {
 // MARK:- Wibmo3ds
 @objc public class Wibmo3ds : NSObject  {
     
-    public static let shared = Wibmo3ds()
+    @objc public static let shared = Wibmo3ds()
     fileprivate let setup = Wibmo3dsSetup()
-    public var configParams: ConfigParameters?
+    @objc public var configParams: ConfigParameters?
     var app: UIApplication?
     fileprivate var customUi: UiCustomization?
     fileprivate var sdkLocale: String?
@@ -111,10 +111,14 @@ private class Wibmo3dsSetup {
             UiCustomization.ButtonType.CANCEL.rawValue : cancelButtonCustomization,
             UiCustomization.ButtonType.RESEND.rawValue : resendButtonCustomization
         ]
+        
+        let labelCustomization = try! LabelCustomization()
         let toolBarCustomization = try! ToolbarCustomization("#ccccffff", "SECURE CHECKOUT", nil)
-        let txtBxCustomization = try? TextBoxCustomization(1, 20, "#ccccffff")
-        let customization = UiCustomization(btnCustomizations, toolBarCustomization, nil, txtBxCustomization)
+        let txtBxCustomization = try! TextBoxCustomization(1, 20, "#ccccffff")
+        let customization = UiCustomization(btnCustomizations, toolBarCustomization, labelCustomization, txtBxCustomization)
+        
         return customization
+        
     }
 }
 
@@ -134,7 +138,7 @@ extension Wibmo3ds: ThreeDS2Service {
         return ["2.1.0"]
     }
     
-     public func initialize(_ application: UIApplication?, _ configParameters: ConfigParameters?, _ locale: String?, _ uiCustomization: UiCustomization?) throws {
+     @objc public func initialize(_ application: UIApplication?, _ configParameters: ConfigParameters?, _ locale: String?, _ uiCustomization: UiCustomization?) throws {
         
         guard setup.isInitialized == false else {
             throw SDKAlreadyInitializedException(message: "Wibmo3ds SDK has been initialized already.", cause: nil)
@@ -157,7 +161,7 @@ extension Wibmo3ds: ThreeDS2Service {
         setup.isInitialized = true
     }
     
-    public func createTransaction(_ directoryServerID: String, _ messageVersion: String?) throws -> Transaction {
+    @objc public func createTransaction(_ directoryServerID: String, _ messageVersion: String?) throws -> Transaction {
         guard setup.isInitialized == true else {
             throw SDKNotInitializedException(message: "SDK not initialized", cause: nil)
         }
@@ -201,7 +205,7 @@ extension Wibmo3ds: ThreeDS2Service {
         }
     }
     
-    public func cleanup() throws {
+    @objc public func cleanup() throws {
         guard setup.isInitialized == true else {
             throw SDKNotInitializedException(message: "Wibmo3ds SDK is not initialized.", cause: nil)
         }
@@ -214,14 +218,14 @@ extension Wibmo3ds: ThreeDS2Service {
         
     }
     
-    public func getSDKVersion() throws -> String {
+    @objc public func getSDKVersion() throws -> String {
         guard setup.isInitialized == true else {
             throw SDKNotInitializedException(message: "Wibmo3ds SDK is not initialized.", cause: nil)
         }
         return Bundle(for: Wibmo3dsSetup.self).infoDictionary!["CFBundleShortVersionString"] as! String
     }
     
-    public func getWarnings() -> [Warning] {
+    @objc public func getWarnings() -> [Warning] {
         if let sw = deviceInfo.SW {
             var warnings = [Warning]()
             for softwareWarning in sw {

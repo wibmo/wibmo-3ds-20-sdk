@@ -11,7 +11,7 @@ import Foundation
     private var message: String
     private var cause: String?
     
-    public init(message: String, cause: String?) {
+    @objc public init(message: String, cause: String?) {
         self.message = message
         self.cause = cause
     }

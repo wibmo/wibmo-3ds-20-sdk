@@ -9,19 +9,19 @@ import Foundation
 
 @objc public class CompletionEvent : NSObject {
     
-    public var sdkTransactionID: String
-    public var transactionStatus: String
+    @objc public var sdkTransactionID: String
+    @objc public var transactionStatus: String
     
-    public init(sdkTransactionID: String, transactionStatus: String) {
+    @objc public init(sdkTransactionID: String, transactionStatus: String) {
         self.sdkTransactionID = sdkTransactionID
         self.transactionStatus = transactionStatus
     }
     
-    public func getSDKTransactionID() -> String {
+    @objc public func getSDKTransactionID() -> String {
         return sdkTransactionID
     }
     
-    public func getTransactionStatus() -> String {
+    @objc public func getTransactionStatus() -> String {
         return transactionStatus
     }
 }

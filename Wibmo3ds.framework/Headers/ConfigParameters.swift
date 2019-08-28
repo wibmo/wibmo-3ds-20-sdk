@@ -9,14 +9,14 @@ import Foundation
 
 @objc public class ConfigParameters : NSObject {
     
-    public var params =  [String: [String: String]]()
+    @objc public var params =  [String: [String: String]]()
     private let defaultGroupName = "Wibmo3ds"
     
-    public override init() {
+    @objc public override init() {
         params[defaultGroupName] = [String: String]()
     }
     
-    public func addParam(_ group: String?, _ paramName: String?, _ paramValue: String?) throws {
+    @objc public func addParam(_ group: String?, _ paramName: String?, _ paramValue: String?) throws {
         guard let paramName = paramName else {
             throw InvalidInputException(message: "paramName can not be nil", cause: nil)
         }
@@ -30,20 +30,20 @@ import Foundation
         }
     }
     
-    public func getParamValue(_ group: String?, _ paramName: String?) throws -> String? {
+    @objc public func getParamValue(_ group: String?, _ paramName: String?) throws -> String {
         guard let paramName = paramName else {
             throw InvalidInputException(message: "paramName can not be nil", cause: nil)
         }
         
         if let groupName = group {
-            return params[groupName]?[paramName]
+            return params[groupName]?[paramName] ?? ""
         } else {
-            return params[defaultGroupName]?[paramName]
+            return params[defaultGroupName]?[paramName] ?? ""
         }
         
     }
     
-    public func removeParam(_ group: String?, _ paramName: String?) throws -> String? {
+    @objc public func removeParam(_ group: String?, _ paramName: String?) throws -> String {
         guard let paramName = paramName else {
             throw InvalidInputException(message: "paramName can not be nil", cause: nil)
         }
@@ -55,7 +55,7 @@ import Foundation
             params[defaultGroupName]?[paramName] = nil
             return paramName
         } else {
-            return nil
+            throw InvalidInputException(message: "paramName is already nil", cause: nil)
         }
     }
 }

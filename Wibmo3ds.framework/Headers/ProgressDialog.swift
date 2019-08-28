@@ -19,20 +19,20 @@ import PKHUD
         super.init(coder: aDecoder)
     }
     
-    public override init(title: String? = nil, subtitle: String? = nil) {
+    @objc public override init(title: String? = nil, subtitle: String? = nil) {
         super.init(title: title, subtitle: subtitle)
     }
     
-    public func start() {
+   @objc  public func start() {
         HUD.show(.progress)        
     }
     
-    public func stop() {
+   @objc  public func stop() {
         HUD.hide()
         
     }
     
-    public func showWithMessage(message:String){
+    @objc public func showWithMessage(message:String){
         HUD.show(.label(message))
     }
 }

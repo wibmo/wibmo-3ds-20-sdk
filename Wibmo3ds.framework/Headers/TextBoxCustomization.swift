@@ -13,7 +13,7 @@ import Foundation
     private var cornerRadius: Int = 0
     private var borderColor: String?
     
-    public init(_ borderWidth: Int = 0, _ cornerRadius: Int = 0, _ borderColor: String? = nil) throws {
+   @objc public init(_ borderWidth: Int = 0, _ cornerRadius: Int = 0, _ borderColor: String? = nil) throws {
         guard borderWidth > 0 else {
             throw InvalidInputException(message: "borderWidth can not be less than 0", cause: nil)
         }
@@ -38,36 +38,36 @@ import Foundation
         }
     }
     
-    public func setBorderWidth(_ borderWidth: Int) throws {
+   @objc public func setBorderWidth(_ borderWidth: Int) throws {
         guard borderWidth > 0 else {
             throw InvalidInputException(message: "borderWidth can not be less than 0", cause: nil)
         }
         self.borderWidth = borderWidth
     }
     
-    public func getBorderWidth() -> Int {
+   @objc public func getBorderWidth() -> Int {
         return borderWidth
     }
     
-    public func setBorderColor(_ hexColorCode: String) throws {
+   @objc public func setBorderColor(_ hexColorCode: String) throws {
         guard hexColorCode.isHexString() else {
             throw InvalidInputException(message: "hexColorCode string should be of format #123456.", cause: nil)
         }
         self.borderColor = hexColorCode
     }
     
-    public func getBorderColor() -> String? {
+    @objc public func getBorderColor() -> String? {
         return borderColor
     }
     
-    public func setCornerRadius(_ cornerRadius: Int) throws {
+    @objc public func setCornerRadius(_ cornerRadius: Int) throws {
         guard cornerRadius > 0 else {
             throw InvalidInputException(message: "cornerRadius can not be less than 0", cause: nil)
         }
         self.cornerRadius = cornerRadius
     }
     
-    public func getCornerRadius() -> Int {
+    @objc public func getCornerRadius() -> Int {
         return cornerRadius
     }
 }

@@ -16,7 +16,7 @@ import Foundation
     public var sdkReferenceNumber: String
     public var messageVersion: String
     
-    public init(sdkTransactionID: String, deviceData: String, sdkEphemeralPublicKey: String, sdkAppID: String, sdkReferenceNumber: String, messageVersion: String) throws {
+    @objc public init(sdkTransactionID: String, deviceData: String, sdkEphemeralPublicKey: String, sdkAppID: String, sdkReferenceNumber: String, messageVersion: String) throws {
         self.sdkTransactionID = sdkTransactionID
         self.sdkEphemeralPublicKey = sdkEphemeralPublicKey
         self.sdkAppID = sdkAppID
@@ -25,27 +25,27 @@ import Foundation
         self.messageVersion = messageVersion
     }
     
-    public func getDeviceData() -> String {
+    @objc public func getDeviceData() -> String {
         return deviceData
     }
     
-    public func getSDKTransactionID() -> String {
+    @objc public func getSDKTransactionID() -> String {
         return sdkTransactionID
     }
     
-    public func getSDKAppID() -> String {
+    @objc public func getSDKAppID() -> String {
         return sdkAppID
     }
     
-    public func getSDKReferenceNumber() -> String {
+    @objc public func getSDKReferenceNumber() -> String {
         return sdkReferenceNumber
     }
     
-    public func getSDKEphemeralPublicKey() -> String {
+    @objc public func getSDKEphemeralPublicKey() -> String {
         return sdkEphemeralPublicKey
     }
     
-    public func getMessageVersion() -> String {
+    @objc public func getMessageVersion() -> String {
         return messageVersion
     }
 }

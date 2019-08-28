@@ -19,18 +19,18 @@ import Foundation
     /// - Parameters:
     ///      - errorCode: Specific error code, i.e not mandatory
     ///      - errorMessage: Error message
-    public init(_ errorCode: String?, _ errorMessage: String) {
+    @objc public init(_ errorCode: String?, _ errorMessage: String) {
         self.errorCode = errorCode
         self.errorMessage = errorMessage
     }
     
     /// Returns details about the error
-    public func getErrorMessage() -> String {
+    @objc public func getErrorMessage() -> String {
         return errorMessage
     }
     
     /// /// Returns the implementer-specific error code
-    public func getErrorCode() -> String? {
+    @objc public func getErrorCode() -> String? {
         return errorCode
     }    
 }

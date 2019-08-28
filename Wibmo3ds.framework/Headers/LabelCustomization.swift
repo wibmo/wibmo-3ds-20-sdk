@@ -13,7 +13,7 @@ import Foundation
     private var headingTxtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName
     private var headingTxtFontSize: Int = Int(UIFont.systemFontSize)
     
-    public override init(_ headingTxtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName,
+    @objc public override init(_ headingTxtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName,
                 _ headingTxtColor: String? = nil,
                 _ headingTxtFontSize: Int = Int(UIFont.systemFontSize)) throws {
         guard headingTxtFontSize > 0 else {
@@ -39,36 +39,36 @@ import Foundation
         }
     }
     
-    public func setHeadingTextFontName(_ fontName: String) throws {
+    @objc public func setHeadingTextFontName(_ fontName: String) throws {
         guard let _ = UIFont(name: fontName, size: UIFont.systemFontSize) else {
             throw InvalidInputException(message: "Font with <\(fontName)> not available.", cause: nil)
         }
         self.headingTxtFontName = fontName
     }
     
-    public func setHeadingTextColor(_ hexColorCode: String) throws {
+    @objc public func setHeadingTextColor(_ hexColorCode: String) throws {
         guard hexColorCode.isHexString() else {
             throw InvalidInputException(message: "hexColorCode string should be of format #123456.", cause: nil)
         }
         self.headingTxtColor = hexColorCode
     }
     
-    public func setHeadingTextFontSize(_ fontSize: Int) throws {
+    @objc public func setHeadingTextFontSize(_ fontSize: Int) throws {
         guard fontSize > 0 else {
             throw InvalidInputException(message: "txtFontSize can not be less than 0", cause: nil)
         }
         self.headingTxtFontSize = fontSize
     }
     
-    public func getHeadingTextFontName() -> String {
+    @objc public func getHeadingTextFontName() -> String {
         return headingTxtFontName
     }
     
-    public func getHeadingTextColor() -> String? {
+    @objc public func getHeadingTextColor() -> String? {
         return headingTxtColor
     }
     
-    public func getHeadingTextFontSize() -> Int {
+    @objc public func getHeadingTextFontSize() -> Int {
         return headingTxtFontSize
     }
 }

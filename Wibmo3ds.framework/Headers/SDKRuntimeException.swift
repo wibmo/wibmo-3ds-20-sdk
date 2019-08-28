@@ -11,12 +11,12 @@ import Foundation
     
     var errorCode: String?
     
-    public init(message: String, errorCode: String?, cause: String?) {
+   @objc public init(message: String, errorCode: String?, cause: String?) {
         self.errorCode = errorCode
         super.init(message: message, cause: cause)
     }
     
-    public func getErrorCode() -> String? {
+   @objc public func getErrorCode() -> String? {
         return errorCode
     }
 }

@@ -12,7 +12,7 @@ import Foundation
     private var backgroundColor: String?
     private var cornerRadius: Int = 0
     
-    public init(_ backgroundColor: String?, _ cornerRadius: Int = 0) throws {
+    @objc public init(_ backgroundColor: String?, _ cornerRadius: Int = 0) throws {
         guard backgroundColor?.isHexString() == true else {
             throw InvalidInputException(message: "backgroundColor string is not of correct format. (eg: #12345678)", cause: nil)
         }
@@ -28,25 +28,25 @@ import Foundation
         }
     }
     
-    public func setBackgroundColor(_ hexColorCode: String) throws {
+    @objc public func setBackgroundColor(_ hexColorCode: String) throws {
         guard hexColorCode.isHexString() == true else {
             throw InvalidInputException(message: "hexColorCode string is not of correct format. (eg: #123456)", cause: nil)
         }
         self.backgroundColor = hexColorCode
     }
     
-    public func setCornerRadius(_ cornerRadius: Int) throws {
+    @objc public func setCornerRadius(_ cornerRadius: Int) throws {
         guard cornerRadius > 0 else {
             throw InvalidInputException(message: "cornerRadius can not be less then 0", cause: nil)
         }
         self.cornerRadius = cornerRadius
     }
     
-    public func getBackgroundColor() -> String? {
+    @objc public func getBackgroundColor() -> String? {
         return backgroundColor
     }
     
-    public func getCornerRadius() -> Int {
+    @objc public func getCornerRadius() -> Int {
         return cornerRadius
     }
 }

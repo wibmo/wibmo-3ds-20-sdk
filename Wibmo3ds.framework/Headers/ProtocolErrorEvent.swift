@@ -12,25 +12,25 @@ import Foundation
 
 @objc public class ProtocolErrorEvent : NSObject {
     
-    public var sdkTransactionID: String
-    public var errorMessage: ErrorMessage
+    @objc public var sdkTransactionID: String
+    @objc public var errorMessage: ErrorMessage
     
     /// The ProtocolErrorEvent constructor shall create an object with the specified inputs
     /// - Parameters:
     ///     - sdkTransactionID: SDK Transaction ID
     ///     - errorMessage: Error message
-    public init(_ sdkTransactionID: String, _ errorMessage: ErrorMessage) {
+    @objc public init(_ sdkTransactionID: String, _ errorMessage: ErrorMessage) {
         self.sdkTransactionID = sdkTransactionID
         self.errorMessage = errorMessage
     }
     
     /// Returns the error message
-    public func getErrorMessage() -> String {
+    @objc public func getErrorMessage() -> String {
         return errorMessage.getErrorDescription()
     }
     
     /// Returns the SDK Transaction ID
-    public func getSDKTransactionID() -> String {
+    @objc public func getSDKTransactionID() -> String {
         return sdkTransactionID
     }
 }
