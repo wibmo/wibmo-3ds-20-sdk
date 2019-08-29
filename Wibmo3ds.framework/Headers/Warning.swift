@@ -34,15 +34,15 @@ import Foundation
         self.severity = severity
     }
     
-    public func getID() -> String {
+    @objc public func getID() -> String {
         return id
     }
     
-    public func getMessage() -> String {
+    @objc public func getMessage() -> String {
         return message
     }
     
-    public func getSeverity() -> Severity {
+    @objc public func getSeverity() -> Severity {
         return severity
     }
     

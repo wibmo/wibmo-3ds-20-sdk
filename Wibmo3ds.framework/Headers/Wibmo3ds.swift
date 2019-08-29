@@ -80,7 +80,7 @@ private class Wibmo3dsSetup {
         return resourceBundle!
     }
     
-    public static func storyboard() -> UIStoryboard {
+    @objc public static func storyboard() -> UIStoryboard {
         return UIStoryboard(name: "Wibmo3ds", bundle: Wibmo3ds.resourceBundle())
     }
     

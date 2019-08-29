@@ -23,11 +23,11 @@ import PKHUD
         super.init(title: title, subtitle: subtitle)
     }
     
-   @objc  public func start() {
+    @objc public func start() {
         HUD.show(.progress)        
     }
     
-   @objc  public func stop() {
+    @objc public func stop() {
         HUD.hide()
         
     }

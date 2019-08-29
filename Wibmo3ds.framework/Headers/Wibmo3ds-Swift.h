@@ -218,6 +218,12 @@ SWIFT_CLASS("_TtC8Wibmo3ds31AuthenticationRequestParameters")
 
 SWIFT_CLASS("_TtC8Wibmo3ds13Customization")
 @interface Customization : NSObject
+- (BOOL)setTextFontName:(NSString * _Nonnull)fontName error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)setTextColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)setTextFontSize:(NSInteger)fontSize error:(NSError * _Nullable * _Nullable)error;
+- (NSString * _Nonnull)getTextFontName SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nullable)getTextColor SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)getTextFontSize SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -398,6 +404,8 @@ SWIFT_CLASS("_TtC8Wibmo3ds18ProtocolErrorEvent")
 /// errors that are encountered by the 3DS SDK during authentication
 SWIFT_CLASS("_TtC8Wibmo3ds17RuntimeErrorEvent")
 @interface RuntimeErrorEvent : NSObject
+@property (nonatomic, copy) NSString * _Nullable errorCode;
+@property (nonatomic, copy) NSString * _Nonnull errorMessage;
 /// Constructs a RuntimeErrorEvent object
 /// \param errorCode Specific error code, i.e not mandatory
 ///
@@ -557,6 +565,9 @@ enum Severity : NSInteger;
 SWIFT_CLASS("_TtC8Wibmo3ds7Warning")
 @interface Warning : NSObject
 - (nonnull instancetype)initWithId:(NSString * _Nonnull)id message:(NSString * _Nonnull)message severity:(enum Severity)severity OBJC_DESIGNATED_INITIALIZER;
+- (NSString * _Nonnull)getID SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nonnull)getMessage SWIFT_WARN_UNUSED_RESULT;
+- (enum Severity)getSeverity SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -576,12 +587,14 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds20WebChallengeProtocol_")
 - (UIWebView * _Nonnull)getWebView SWIFT_WARN_UNUSED_RESULT;
 @end
 
+@class UIStoryboard;
 
 SWIFT_CLASS("_TtC8Wibmo3ds8Wibmo3ds")
 @interface Wibmo3ds : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Wibmo3ds * _Nonnull shared;)
 + (Wibmo3ds * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 @property (nonatomic, strong) ConfigParameters * _Nullable configParams;
++ (UIStoryboard * _Nonnull)storyboard SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -823,6 +836,12 @@ SWIFT_CLASS("_TtC8Wibmo3ds31AuthenticationRequestParameters")
 
 SWIFT_CLASS("_TtC8Wibmo3ds13Customization")
 @interface Customization : NSObject
+- (BOOL)setTextFontName:(NSString * _Nonnull)fontName error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)setTextColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)setTextFontSize:(NSInteger)fontSize error:(NSError * _Nullable * _Nullable)error;
+- (NSString * _Nonnull)getTextFontName SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nullable)getTextColor SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)getTextFontSize SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -1003,6 +1022,8 @@ SWIFT_CLASS("_TtC8Wibmo3ds18ProtocolErrorEvent")
 /// errors that are encountered by the 3DS SDK during authentication
 SWIFT_CLASS("_TtC8Wibmo3ds17RuntimeErrorEvent")
 @interface RuntimeErrorEvent : NSObject
+@property (nonatomic, copy) NSString * _Nullable errorCode;
+@property (nonatomic, copy) NSString * _Nonnull errorMessage;
 /// Constructs a RuntimeErrorEvent object
 /// \param errorCode Specific error code, i.e not mandatory
 ///
@@ -1162,6 +1183,9 @@ enum Severity : NSInteger;
 SWIFT_CLASS("_TtC8Wibmo3ds7Warning")
 @interface Warning : NSObject
 - (nonnull instancetype)initWithId:(NSString * _Nonnull)id message:(NSString * _Nonnull)message severity:(enum Severity)severity OBJC_DESIGNATED_INITIALIZER;
+- (NSString * _Nonnull)getID SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nonnull)getMessage SWIFT_WARN_UNUSED_RESULT;
+- (enum Severity)getSeverity SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -1181,12 +1205,14 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds20WebChallengeProtocol_")
 - (UIWebView * _Nonnull)getWebView SWIFT_WARN_UNUSED_RESULT;
 @end
 
+@class UIStoryboard;
 
 SWIFT_CLASS("_TtC8Wibmo3ds8Wibmo3ds")
 @interface Wibmo3ds : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Wibmo3ds * _Nonnull shared;)
 + (Wibmo3ds * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 @property (nonatomic, strong) ConfigParameters * _Nullable configParams;
++ (UIStoryboard * _Nonnull)storyboard SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end

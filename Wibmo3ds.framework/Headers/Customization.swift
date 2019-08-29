@@ -34,36 +34,36 @@ import Foundation
         self.txtFontName = txtFontName
     }
     
-    public func setTextFontName(_ fontName: String) throws {
+    @objc public func setTextFontName(_ fontName: String) throws {
         guard let _ = UIFont(name: fontName, size: UIFont.systemFontSize) else {
             throw InvalidInputException(message: "Font with <\(fontName)> not supported.", cause: nil)
         }
         self.txtFontName = fontName
     }
     
-    public func setTextColor(_ hexColorCode: String) throws {
+    @objc public func setTextColor(_ hexColorCode: String) throws {
         guard hexColorCode.isHexString() else {
             throw InvalidInputException(message: "hexColorCode string should be of format #123456.", cause: nil)
         }
         self.txtColor = hexColorCode
     }
     
-    public func setTextFontSize(_ fontSize: Int) throws {
+    @objc public func setTextFontSize(_ fontSize: Int) throws {
         guard fontSize > 0 else {
             throw InvalidInputException(message: "txtFontSize can not be less than 0", cause: nil)
         }
         self.txtFontSize = fontSize
     }
     
-    public func getTextFontName() -> String {
+    @objc public func getTextFontName() -> String {
         return txtFontName
     }
     
-    public func getTextColor() -> String? {
+    @objc public func getTextColor() -> String? {
         return txtColor
     }
     
-    public func getTextFontSize() -> Int {
+    @objc public func getTextFontSize() -> Int {
         return txtFontSize
     }
 }

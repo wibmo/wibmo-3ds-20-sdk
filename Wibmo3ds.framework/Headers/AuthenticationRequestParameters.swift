@@ -9,12 +9,12 @@ import Foundation
 
 @objc public class AuthenticationRequestParameters : NSObject {
     
-    public var sdkTransactionID: String
-    public var deviceData: String
-    public var sdkEphemeralPublicKey: String
-    public var sdkAppID: String
-    public var sdkReferenceNumber: String
-    public var messageVersion: String
+    var sdkTransactionID: String
+    var deviceData: String
+    var sdkEphemeralPublicKey: String
+    var sdkAppID: String
+    var sdkReferenceNumber: String
+    var messageVersion: String
     
     @objc public init(sdkTransactionID: String, deviceData: String, sdkEphemeralPublicKey: String, sdkAppID: String, sdkReferenceNumber: String, messageVersion: String) throws {
         self.sdkTransactionID = sdkTransactionID
