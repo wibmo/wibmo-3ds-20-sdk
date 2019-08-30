@@ -20,7 +20,7 @@ You must have a Wibmo Inc issued license key to use the SDK.
 ### Adding Wibmo3ds SDK as dependency to iOS Application
 
 #### Cocoapods
-* In your project's podfile include under your app target ``` pod 'Wibmo3ds’, '~> 1.0.0' ``` .
+* In your project's podfile include under your app target ``` pod 'Wibmo3ds’, '~> 1.0.3' ``` .
 * Then pod install.
 
 **An example in ``` AppDelegate ``` implementation is shared below, but app makers can call it as per there convenience. Just make sure Wibmo3ds.shared.initialize... is called only once per app launch.** 
