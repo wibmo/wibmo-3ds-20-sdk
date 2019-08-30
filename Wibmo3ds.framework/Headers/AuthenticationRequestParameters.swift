@@ -9,12 +9,12 @@ import Foundation
 
 @objc public class AuthenticationRequestParameters : NSObject {
     
-    var sdkTransactionID: String
-    var deviceData: String
-    var sdkEphemeralPublicKey: String
-    var sdkAppID: String
-    var sdkReferenceNumber: String
-    var messageVersion: String
+    @objc public private(set) var sdkTransactionID: String
+    @objc public private(set) var deviceData: String
+    @objc public private(set) var sdkEphemeralPublicKey: String
+    @objc public private(set) var sdkAppID: String
+    @objc public private(set) var sdkReferenceNumber: String
+    @objc public private(set) var messageVersion: String
     
     @objc public init(sdkTransactionID: String, deviceData: String, sdkEphemeralPublicKey: String, sdkAppID: String, sdkReferenceNumber: String, messageVersion: String) throws {
         self.sdkTransactionID = sdkTransactionID
@@ -23,29 +23,5 @@ import Foundation
         self.sdkReferenceNumber = sdkReferenceNumber
         self.deviceData = deviceData
         self.messageVersion = messageVersion
-    }
-    
-    @objc public func getDeviceData() -> String {
-        return deviceData
-    }
-    
-    @objc public func getSDKTransactionID() -> String {
-        return sdkTransactionID
-    }
-    
-    @objc public func getSDKAppID() -> String {
-        return sdkAppID
-    }
-    
-    @objc public func getSDKReferenceNumber() -> String {
-        return sdkReferenceNumber
-    }
-    
-    @objc public func getSDKEphemeralPublicKey() -> String {
-        return sdkEphemeralPublicKey
-    }
-    
-    @objc public func getMessageVersion() -> String {
-        return messageVersion
     }
 }

@@ -202,13 +202,13 @@ typedef SWIFT_ENUM(NSInteger, ACSUITypeInt, closed) {
 
 SWIFT_CLASS("_TtC8Wibmo3ds31AuthenticationRequestParameters")
 @interface AuthenticationRequestParameters : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkTransactionID;
+@property (nonatomic, readonly, copy) NSString * _Nonnull deviceData;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkEphemeralPublicKey;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkAppID;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkReferenceNumber;
+@property (nonatomic, readonly, copy) NSString * _Nonnull messageVersion;
 - (nullable instancetype)initWithSdkTransactionID:(NSString * _Nonnull)sdkTransactionID deviceData:(NSString * _Nonnull)deviceData sdkEphemeralPublicKey:(NSString * _Nonnull)sdkEphemeralPublicKey sdkAppID:(NSString * _Nonnull)sdkAppID sdkReferenceNumber:(NSString * _Nonnull)sdkReferenceNumber messageVersion:(NSString * _Nonnull)messageVersion error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
-- (NSString * _Nonnull)getDeviceData SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKTransactionID SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKAppID SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKReferenceNumber SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKEphemeralPublicKey SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getMessageVersion SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -242,6 +242,11 @@ SWIFT_CLASS("_TtC8Wibmo3ds19ButtonCustomization")
 /// The ChallengeParameters class shall hold the parameters that are required to conduct the challenge process.
 SWIFT_CLASS("_TtC8Wibmo3ds19ChallengeParameters")
 @interface ChallengeParameters : NSObject
+@property (nonatomic, copy) NSString * _Nullable a3DSServerTransactionID;
+@property (nonatomic, copy) NSString * _Nullable acsTransactionID;
+@property (nonatomic, copy) NSString * _Nullable acsRefNumber;
+@property (nonatomic, copy) NSString * _Nullable acsSignedContent;
+@property (nonatomic, copy) NSString * _Nullable threeDSServerTransactionID;
 /// Initializing ChallengeParameters with all the required parameters
 /// \param a3DSServerTransactionID Transaction identifier assigned by the 3DS Server to uniquely identify a single transaction
 ///
@@ -252,22 +257,6 @@ SWIFT_CLASS("_TtC8Wibmo3ds19ChallengeParameters")
 /// \param acsSignedContent ACS signed content. This data includes the ACS URL, ACS ephemeral public key, and SDK ephemeral public key
 ///
 - (nonnull instancetype)initWithA3DSServerTransactionID:(NSString * _Nullable)a3DSServerTransactionID acsTransactionID:(NSString * _Nullable)acsTransactionID acsRefNumber:(NSString * _Nullable)acsRefNumber acsSignedContent:(NSString * _Nullable)acsSignedContent threeDSServerTransactionID:(NSString * _Nullable)threeDSServerTransactionID acsRenderingType:(enum ACSUITypeInt)acsRenderingType OBJC_DESIGNATED_INITIALIZER;
-/// Sets the 3DS Server Transaction ID
-- (void)set3DSServerTransactionIDWithA3DSServerTransactionID:(NSString * _Nonnull)a3DSServerTransactionID;
-/// Sets the ACS Transaction ID
-- (void)setAcsTransactionIDWithAcsTransactionID:(NSString * _Nonnull)acsTransactionID;
-/// Sets the ACS Reference Number
-- (void)setAcsRefNumberWithAcsRefNumber:(NSString * _Nonnull)acsRefNumber;
-/// Sets the ACS signed content. This data includes the ACS URL, ACS ephemeral public key, and SDK ephemeral public key
-- (void)setACSSignedContentWithAcsSignedContent:(NSString * _Nonnull)acsSignedContent;
-/// Returns the 3DS Server Transaction ID
-- (NSString * _Nullable)getA3DSServerTransactionID SWIFT_WARN_UNUSED_RESULT;
-/// Returns the ACS Transaction ID
-- (NSString * _Nullable)getAcsTransactionID SWIFT_WARN_UNUSED_RESULT;
-/// Returns the ACS Reference Number
-- (NSString * _Nullable)getAcsRefNumber SWIFT_WARN_UNUSED_RESULT;
-/// Returns the ACS signed content object
-- (NSString * _Nullable)getACSSignedContent SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -450,7 +439,6 @@ SWIFT_CLASS("_TtC8Wibmo3ds26SDKNotInitializedException")
 SWIFT_CLASS("_TtC8Wibmo3ds19SDKRuntimeException")
 @interface SDKRuntimeException : RuntimeException
 - (nonnull instancetype)initWithMessage:(NSString * _Nonnull)message errorCode:(NSString * _Nullable)errorCode cause:(NSString * _Nullable)cause OBJC_DESIGNATED_INITIALIZER;
-- (NSString * _Nullable)getErrorCode SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithMessage:(NSString * _Nonnull)message cause:(NSString * _Nullable)cause SWIFT_UNAVAILABLE;
 @end
 
@@ -531,6 +519,10 @@ enum ButtonTypeInt : NSInteger;
 /// to customize the 3DS SDK UI elements. An object of this class holds various UI-related parameters
 SWIFT_CLASS("_TtC8Wibmo3ds15UiCustomization")
 @interface UiCustomization : NSObject
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, ButtonCustomization *> * _Nonnull btnCustomizations;
+@property (nonatomic, readonly, strong) ToolbarCustomization * _Nonnull tbrCustomization;
+@property (nonatomic, readonly, strong) LabelCustomization * _Nonnull lblCustomization;
+@property (nonatomic, readonly, strong) TextBoxCustomization * _Nonnull txtBxCustomization;
 - (nonnull instancetype)init:(NSDictionary<NSString *, ButtonCustomization *> * _Nonnull)btnCustomizations :(ToolbarCustomization * _Nonnull)tbrCustomization :(LabelCustomization * _Nonnull)lblCustomization :(TextBoxCustomization * _Nonnull)txtBxCustomization OBJC_DESIGNATED_INITIALIZER;
 /// Sets the attributes of a ButtonCustomization object for an implementer-specific button type.
 - (BOOL)setButtonCustomization:(ButtonCustomization * _Nonnull)buttonCustomization :(enum ButtonTypeInt)buttonType error:(NSError * _Nullable * _Nullable)error;
@@ -820,13 +812,13 @@ typedef SWIFT_ENUM(NSInteger, ACSUITypeInt, closed) {
 
 SWIFT_CLASS("_TtC8Wibmo3ds31AuthenticationRequestParameters")
 @interface AuthenticationRequestParameters : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkTransactionID;
+@property (nonatomic, readonly, copy) NSString * _Nonnull deviceData;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkEphemeralPublicKey;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkAppID;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkReferenceNumber;
+@property (nonatomic, readonly, copy) NSString * _Nonnull messageVersion;
 - (nullable instancetype)initWithSdkTransactionID:(NSString * _Nonnull)sdkTransactionID deviceData:(NSString * _Nonnull)deviceData sdkEphemeralPublicKey:(NSString * _Nonnull)sdkEphemeralPublicKey sdkAppID:(NSString * _Nonnull)sdkAppID sdkReferenceNumber:(NSString * _Nonnull)sdkReferenceNumber messageVersion:(NSString * _Nonnull)messageVersion error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
-- (NSString * _Nonnull)getDeviceData SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKTransactionID SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKAppID SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKReferenceNumber SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getSDKEphemeralPublicKey SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getMessageVersion SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -860,6 +852,11 @@ SWIFT_CLASS("_TtC8Wibmo3ds19ButtonCustomization")
 /// The ChallengeParameters class shall hold the parameters that are required to conduct the challenge process.
 SWIFT_CLASS("_TtC8Wibmo3ds19ChallengeParameters")
 @interface ChallengeParameters : NSObject
+@property (nonatomic, copy) NSString * _Nullable a3DSServerTransactionID;
+@property (nonatomic, copy) NSString * _Nullable acsTransactionID;
+@property (nonatomic, copy) NSString * _Nullable acsRefNumber;
+@property (nonatomic, copy) NSString * _Nullable acsSignedContent;
+@property (nonatomic, copy) NSString * _Nullable threeDSServerTransactionID;
 /// Initializing ChallengeParameters with all the required parameters
 /// \param a3DSServerTransactionID Transaction identifier assigned by the 3DS Server to uniquely identify a single transaction
 ///
@@ -870,22 +867,6 @@ SWIFT_CLASS("_TtC8Wibmo3ds19ChallengeParameters")
 /// \param acsSignedContent ACS signed content. This data includes the ACS URL, ACS ephemeral public key, and SDK ephemeral public key
 ///
 - (nonnull instancetype)initWithA3DSServerTransactionID:(NSString * _Nullable)a3DSServerTransactionID acsTransactionID:(NSString * _Nullable)acsTransactionID acsRefNumber:(NSString * _Nullable)acsRefNumber acsSignedContent:(NSString * _Nullable)acsSignedContent threeDSServerTransactionID:(NSString * _Nullable)threeDSServerTransactionID acsRenderingType:(enum ACSUITypeInt)acsRenderingType OBJC_DESIGNATED_INITIALIZER;
-/// Sets the 3DS Server Transaction ID
-- (void)set3DSServerTransactionIDWithA3DSServerTransactionID:(NSString * _Nonnull)a3DSServerTransactionID;
-/// Sets the ACS Transaction ID
-- (void)setAcsTransactionIDWithAcsTransactionID:(NSString * _Nonnull)acsTransactionID;
-/// Sets the ACS Reference Number
-- (void)setAcsRefNumberWithAcsRefNumber:(NSString * _Nonnull)acsRefNumber;
-/// Sets the ACS signed content. This data includes the ACS URL, ACS ephemeral public key, and SDK ephemeral public key
-- (void)setACSSignedContentWithAcsSignedContent:(NSString * _Nonnull)acsSignedContent;
-/// Returns the 3DS Server Transaction ID
-- (NSString * _Nullable)getA3DSServerTransactionID SWIFT_WARN_UNUSED_RESULT;
-/// Returns the ACS Transaction ID
-- (NSString * _Nullable)getAcsTransactionID SWIFT_WARN_UNUSED_RESULT;
-/// Returns the ACS Reference Number
-- (NSString * _Nullable)getAcsRefNumber SWIFT_WARN_UNUSED_RESULT;
-/// Returns the ACS signed content object
-- (NSString * _Nullable)getACSSignedContent SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -1068,7 +1049,6 @@ SWIFT_CLASS("_TtC8Wibmo3ds26SDKNotInitializedException")
 SWIFT_CLASS("_TtC8Wibmo3ds19SDKRuntimeException")
 @interface SDKRuntimeException : RuntimeException
 - (nonnull instancetype)initWithMessage:(NSString * _Nonnull)message errorCode:(NSString * _Nullable)errorCode cause:(NSString * _Nullable)cause OBJC_DESIGNATED_INITIALIZER;
-- (NSString * _Nullable)getErrorCode SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithMessage:(NSString * _Nonnull)message cause:(NSString * _Nullable)cause SWIFT_UNAVAILABLE;
 @end
 
@@ -1149,6 +1129,10 @@ enum ButtonTypeInt : NSInteger;
 /// to customize the 3DS SDK UI elements. An object of this class holds various UI-related parameters
 SWIFT_CLASS("_TtC8Wibmo3ds15UiCustomization")
 @interface UiCustomization : NSObject
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, ButtonCustomization *> * _Nonnull btnCustomizations;
+@property (nonatomic, readonly, strong) ToolbarCustomization * _Nonnull tbrCustomization;
+@property (nonatomic, readonly, strong) LabelCustomization * _Nonnull lblCustomization;
+@property (nonatomic, readonly, strong) TextBoxCustomization * _Nonnull txtBxCustomization;
 - (nonnull instancetype)init:(NSDictionary<NSString *, ButtonCustomization *> * _Nonnull)btnCustomizations :(ToolbarCustomization * _Nonnull)tbrCustomization :(LabelCustomization * _Nonnull)lblCustomization :(TextBoxCustomization * _Nonnull)txtBxCustomization OBJC_DESIGNATED_INITIALIZER;
 /// Sets the attributes of a ButtonCustomization object for an implementer-specific button type.
 - (BOOL)setButtonCustomization:(ButtonCustomization * _Nonnull)buttonCustomization :(enum ButtonTypeInt)buttonType error:(NSError * _Nullable * _Nullable)error;

@@ -9,14 +9,14 @@ import Foundation
 
 @objc public class SDKRuntimeException: RuntimeException {
     
-    var errorCode: String?
+   public private(set) var errorCode: String?
     
    @objc public init(message: String, errorCode: String?, cause: String?) {
         self.errorCode = errorCode
         super.init(message: message, cause: cause)
     }
     
-   @objc public func getErrorCode() -> String? {
-        return errorCode
-    }
+//   @objc public func getErrorCode() -> String? {
+//        return errorCode
+//    }
 }

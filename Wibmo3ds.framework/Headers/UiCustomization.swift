@@ -13,10 +13,10 @@ import Foundation
 
 @objc public class UiCustomization : NSObject {
     
-    private var btnCustomizations: Dictionary<String, ButtonCustomization>
-    private var tbrCustomization: ToolbarCustomization
-    private var lblCustomization: LabelCustomization
-    private var txtBxCustomization: TextBoxCustomization
+    @objc public private(set) var btnCustomizations: Dictionary<String, ButtonCustomization>
+    @objc public private(set) var tbrCustomization: ToolbarCustomization
+    @objc public private(set) var lblCustomization: LabelCustomization
+    @objc public private(set) var txtBxCustomization: TextBoxCustomization
     
     @objc public init(_ btnCustomizations: Dictionary<String, ButtonCustomization> ,
                 _ tbrCustomization: ToolbarCustomization,
@@ -35,6 +35,21 @@ import Foundation
         case NEXT = 2
         case CANCEL = 3
         case RESEND = 4
+        
+        public static func buttonType(intType: ButtonTypeInt) -> ButtonType {
+            switch intType {
+            case .VERIFY:
+                return ButtonType.VERIFY
+            case .CONTINUE:
+                return ButtonType.CONTINUE
+            case .NEXT:
+                return ButtonType.NEXT
+            case .CANCEL:
+                return ButtonType.CANCEL
+            case .RESEND:
+                return ButtonType.RESEND
+            }
+        }
     }
     
     public enum ButtonType: String {
@@ -47,7 +62,7 @@ import Foundation
     
     /// Sets the attributes of a ButtonCustomization object for an implementer-specific button type.
     @objc public func setButtonCustomization(_ buttonCustomization: ButtonCustomization, _ buttonType: ButtonTypeInt) throws {
-        let btnType = self.buttonType(intType: buttonType)
+        let btnType = ButtonTypeInt.buttonType(intType: buttonType)
         btnCustomizations[btnType.rawValue] = buttonCustomization
     }
     
@@ -69,7 +84,7 @@ import Foundation
     /// Returns a ButtonCustomization object.
     @objc public func getButtonCustomization(_ buttonType: ButtonTypeInt) throws -> ButtonCustomization {
         
-        let btnType = self.buttonType(intType: buttonType)
+        let btnType = ButtonTypeInt.buttonType(intType: buttonType)
         if let customization = btnCustomizations[btnType.rawValue] {
             return customization
         } else {
@@ -90,20 +105,5 @@ import Foundation
     /// Returns a TextBoxCustomization object.
     @objc public func getTextBoxCustomization() -> TextBoxCustomization {
         return txtBxCustomization
-    }
-    
-    private func buttonType(intType: ButtonTypeInt) -> ButtonType {
-        switch intType {
-        case .VERIFY:
-            return ButtonType.VERIFY
-        case .CONTINUE:
-            return ButtonType.CONTINUE
-        case .NEXT:
-            return ButtonType.NEXT
-        case .CANCEL:
-            return ButtonType.CANCEL
-        case .RESEND:
-            return ButtonType.RESEND
-        }
     }
 }

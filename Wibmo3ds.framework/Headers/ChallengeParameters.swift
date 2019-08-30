@@ -11,12 +11,12 @@ import Foundation
 
 @objc public class ChallengeParameters : NSObject {
     
-    var a3DSServerTransactionID: String?
-    var acsTransactionID: String?
-    var acsRefNumber: String?
-    var acsSignedContent: String?
-    var threeDSServerTransactionID: String?
-    var acsRenderingType: ACSUIType?
+    @objc public var a3DSServerTransactionID: String?
+    @objc public var acsTransactionID: String?
+    @objc public var acsRefNumber: String?
+    @objc public var acsSignedContent: String?
+    @objc public var threeDSServerTransactionID: String?
+    public var acsRenderingType: ACSUIType?
     
     /// Initializing ChallengeParameters with all the required parameters
     /// - Parameters:
@@ -57,45 +57,5 @@ import Foundation
         case .html:
             return ACSUIType.html
         }
-    }
-    
-    /// Sets the 3DS Server Transaction ID
-    @objc public func set3DSServerTransactionID(a3DSServerTransactionID: String) {
-        self.a3DSServerTransactionID = a3DSServerTransactionID
-    }
-    
-    /// Sets the ACS Transaction ID
-    @objc public func setAcsTransactionID(acsTransactionID: String) {
-        self.acsTransactionID = acsTransactionID
-    }
-    
-    /// Sets the ACS Reference Number
-    @objc public func setAcsRefNumber(acsRefNumber: String) {
-        self.acsRefNumber = acsRefNumber
-    }
-    
-    /// Sets the ACS signed content. This data includes the ACS URL, ACS ephemeral public key, and SDK ephemeral public key
-    @objc public func setACSSignedContent(acsSignedContent: String) {
-        self.acsSignedContent = acsSignedContent
-    }
-    
-    /// Returns the 3DS Server Transaction ID
-    @objc public func getA3DSServerTransactionID() -> String? {
-        return a3DSServerTransactionID
-    }
-    
-    /// Returns the ACS Transaction ID
-    @objc public func getAcsTransactionID() -> String? {
-        return acsTransactionID
-    }
-    
-    /// Returns the ACS Reference Number
-    @objc public func getAcsRefNumber() -> String? {
-        return acsRefNumber
-    }
-    
-    /// Returns the ACS signed content object
-    @objc public func getACSSignedContent() -> String? {
-        return acsSignedContent
     }
 }

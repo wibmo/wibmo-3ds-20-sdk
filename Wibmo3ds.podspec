@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Wibmo3ds'
-  s.version          = '1.0.1'
+  s.version          = '1.0.3'
   s.summary          = 'A EMVCO Certified 3-D Secure [2.1.0] SDK.'
 
 # This description is used to generate tags and improve search results.
