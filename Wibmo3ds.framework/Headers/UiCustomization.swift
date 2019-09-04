@@ -18,10 +18,10 @@ import Foundation
     @objc public private(set) var lblCustomization: LabelCustomization
     @objc public private(set) var txtBxCustomization: TextBoxCustomization
     
-    @objc public init(_ btnCustomizations: Dictionary<String, ButtonCustomization> ,
-                _ tbrCustomization: ToolbarCustomization,
-                _ lblCustomization: LabelCustomization,
-                _ txtBxCustomization: TextBoxCustomization
+    @objc public init(btnCustomizations: Dictionary<String, ButtonCustomization> ,
+                tbrCustomization: ToolbarCustomization,
+                lblCustomization: LabelCustomization,
+                txtBxCustomization: TextBoxCustomization
         ) {
         self.btnCustomizations = btnCustomizations
         self.tbrCustomization = tbrCustomization

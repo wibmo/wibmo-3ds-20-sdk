@@ -9,35 +9,63 @@ import Foundation
 
 @objc public class LabelCustomization: Customization {
     
-    private var headingTxtColor: String?
-    private var headingTxtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName
-    private var headingTxtFontSize: Int = Int(UIFont.systemFontSize)
+    @objc public private(set) var headingTxtColor: String?
+    @objc public private(set) var headingTxtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName
+    @objc public private(set) var headingTxtFontSize: Int = Int(UIFont.systemFontSize)
     
-    @objc public override init(_ headingTxtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName,
-                _ headingTxtColor: String? = nil,
-                _ headingTxtFontSize: Int = Int(UIFont.systemFontSize)) throws {
+    @objc override public init(txtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName, txtColor: String? = nil, txtFontSize: Int = Int(UIFont.systemFontSize)) throws {
+        
         guard headingTxtFontSize > 0 else {
             throw InvalidInputException(message: "headingTxtFontSize can not be less than 0", cause: nil)
         }
         
-        guard let _ = UIFont(name: headingTxtFontName, size: CGFloat(headingTxtFontSize)) else {
+        guard let _ = UIFont(name: txtFontName, size: CGFloat(txtFontSize)) else {
             throw InvalidInputException(message: "Font with <headingTxtFontName> not available.", cause: nil)
         }
         
-        if let textColor = headingTxtColor {
+        if let textColor = txtColor {
             guard textColor.isHexString() else {
                 throw InvalidInputException(message: "headingTxtColor string should be of format #123456.", cause: nil)
             }
         }
-        self.headingTxtFontSize = headingTxtFontSize
-        self.headingTxtColor = headingTxtColor
-        self.headingTxtFontName = headingTxtFontName
+        self.headingTxtFontSize = txtFontSize
+        self.headingTxtColor = txtColor
+        self.headingTxtFontName = txtFontName
         do {
             try super.init()
+            
         } catch {
             throw error
         }
+    
     }
+    
+//    convenience init(headingTxtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName,
+//                headingTxtColor: String? = nil,
+//                headingTxtFontSize: Int = Int(UIFont.systemFontSize)) throws {
+//        guard headingTxtFontSize > 0 else {
+//            throw InvalidInputException(message: "headingTxtFontSize can not be less than 0", cause: nil)
+//        }
+//
+//        guard let _ = UIFont(name: headingTxtFontName, size: CGFloat(headingTxtFontSize)) else {
+//            throw InvalidInputException(message: "Font with <headingTxtFontName> not available.", cause: nil)
+//        }
+//
+//        if let textColor = headingTxtColor {
+//            guard textColor.isHexString() else {
+//                throw InvalidInputException(message: "headingTxtColor string should be of format #123456.", cause: nil)
+//            }
+//        }
+//        self.headingTxtFontSize = headingTxtFontSize
+//        self.headingTxtColor = headingTxtColor
+//        self.headingTxtFontName = headingTxtFontName
+//        do {
+//            try super.init()
+//
+//        } catch {
+//            throw error
+//        }
+//    }
     
     @objc public func setHeadingTextFontName(_ fontName: String) throws {
         guard let _ = UIFont(name: fontName, size: UIFont.systemFontSize) else {
@@ -70,5 +98,22 @@ import Foundation
     
     @objc public func getHeadingTextFontSize() -> Int {
         return headingTxtFontSize
+    }
+    
+
+    func getHeadingTextFont() -> UIFont {
+        if let font = UIFont(name: headingTxtFontName, size: CGFloat(headingTxtFontSize)) {
+            return font
+        } else {
+            return UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        }
+    }
+    
+    func getHeadingTextUiColor() -> UIColor {
+        if let cl = headingTxtColor , let headingColor = UIColor.init(hexString: cl) {
+            return headingColor
+        } else {
+            return UIColor.black
+        }
     }
 }

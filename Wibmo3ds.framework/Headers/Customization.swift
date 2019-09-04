@@ -13,9 +13,9 @@ import Foundation
     private var txtColor: String?
     private var txtFontSize: Int = Int(UIFont.systemFontSize)
     
-    public init(_ txtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName,
-                _ txtColor: String? = nil,
-                _ txtFontSize: Int = Int(UIFont.systemFontSize)) throws {
+    public init(txtFontName: String = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName,
+                txtColor: String? = nil,
+                txtFontSize: Int = Int(UIFont.systemFontSize)) throws {
         guard txtFontSize > 0 else {
             throw InvalidInputException(message: "txtFontSize can not be less than 0", cause: nil)
         }
@@ -66,5 +66,22 @@ import Foundation
     @objc public func getTextFontSize() -> Int {
         return txtFontSize
     }
+    
+    func getTextFont() -> UIFont {
+        if let font = UIFont(name: txtFontName, size: CGFloat(txtFontSize)) {
+            return font
+        } else {
+            return UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        }
+    }
+    
+    func getTextUiColor() -> UIColor {
+        if let cl = txtColor {
+            return UIColor.init(hexString: cl) ?? UIColor.black
+        } else {
+            return UIColor.black
+        }
+    }
+    
 }
 

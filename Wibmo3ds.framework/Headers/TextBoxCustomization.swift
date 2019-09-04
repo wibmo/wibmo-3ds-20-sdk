@@ -13,7 +13,8 @@ import Foundation
     private var cornerRadius: Int = 0
     private var borderColor: String?
     
-   @objc public init(_ borderWidth: Int = 0, _ cornerRadius: Int = 0, _ borderColor: String? = nil) throws {
+    
+   @objc public init(borderWidth: Int = 0, cornerRadius: Int = 0, borderColor: String? = nil) throws {
         guard borderWidth > 0 else {
             throw InvalidInputException(message: "borderWidth can not be less than 0", cause: nil)
         }

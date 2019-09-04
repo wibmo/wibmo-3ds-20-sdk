@@ -9,11 +9,11 @@ import Foundation
 
 @objc public class ToolbarCustomization: Customization {
     
-    private var backgroundColor: String?
-    private var headerText: String?
-    private var buttonText: String?
+    @objc public var backgroundColor: String?
+    @objc public var headerText: String?
+    @objc public var buttonText: String?
     
-    public init(_ backgroundColor: String? = nil, _ headerText: String? = nil, _ buttonText: String? = nil) throws {
+    public init(backgroundColor: String? = nil, headerText: String? = nil, buttonText: String? = nil) throws {
         guard backgroundColor?.isHexString() == true else {
             throw InvalidInputException(message: "backgroundColor string is not of correct format. (eg: #123456)", cause: nil)
         }

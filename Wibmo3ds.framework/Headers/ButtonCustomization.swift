@@ -9,10 +9,10 @@ import Foundation
 
 @objc public class ButtonCustomization: Customization {
     
-    private var backgroundColor: String?
-    private var cornerRadius: Int = 0
+    @objc public var backgroundColor: String?
+    @objc public var cornerRadius: Int = 0
     
-    @objc public init(_ backgroundColor: String?, _ cornerRadius: Int = 0) throws {
+    @objc public init(backgroundColor: String?, cornerRadius: Int = 0) throws {
         guard backgroundColor?.isHexString() == true else {
             throw InvalidInputException(message: "backgroundColor string is not of correct format. (eg: #12345678)", cause: nil)
         }

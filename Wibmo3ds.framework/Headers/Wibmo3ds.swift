@@ -98,11 +98,11 @@ private class Wibmo3dsSetup {
     }
     
     fileprivate func uiCustomization() -> UiCustomization {
-        let verifyButtonCustomization = try! ButtonCustomization("#55c2b7ff", 5) //#5382BA #55c2b7ff
-        let continueButtonCustomization = try! ButtonCustomization("#0099ffff", 5)
-        let nextButtonCustomization = try! ButtonCustomization("#5382BAff", 5)  //0099ffff  7F7F7F
-        let cancelButtonCustomization = try! ButtonCustomization("#e10531ff", 5)
-        let resendButtonCustomization = try! ButtonCustomization("#7F7F7Fff", 5)  //fece00ff
+        let verifyButtonCustomization = try! ButtonCustomization(backgroundColor: "#55c2b7ff", cornerRadius: 5) //#5382BA #55c2b7ff
+        let continueButtonCustomization = try! ButtonCustomization(backgroundColor: "#0099ffff", cornerRadius: 5)
+        let nextButtonCustomization = try! ButtonCustomization(backgroundColor: "#5382BAff", cornerRadius: 5)  //0099ffff  7F7F7F
+        let cancelButtonCustomization = try! ButtonCustomization(backgroundColor: "#e10531ff", cornerRadius: 5)
+        let resendButtonCustomization = try! ButtonCustomization(backgroundColor: "#7F7F7Fff", cornerRadius: 5)  //fece00ff
         
         let btnCustomizations = [
             UiCustomization.ButtonType.VERIFY.rawValue : verifyButtonCustomization,
@@ -113,9 +113,10 @@ private class Wibmo3dsSetup {
         ]
         
         let labelCustomization = try! LabelCustomization()
-        let toolBarCustomization = try! ToolbarCustomization("#ccccffff", "SECURE CHECKOUT", nil)
-        let txtBxCustomization = try! TextBoxCustomization(1, 20, "#ccccffff")
-        let customization = UiCustomization(btnCustomizations, toolBarCustomization, labelCustomization, txtBxCustomization)
+        let toolBarCustomization = try! ToolbarCustomization(backgroundColor: "#ccccffff", headerText: "SECURE CHECKOUT", buttonText: nil)
+        let txtBxCustomization = try! TextBoxCustomization(borderWidth: 1, cornerRadius: 20, borderColor: "#ccccffff")
+        //let customization = UiCustomization(btnCustomizations, toolBarCustomization, labelCustomization, txtBxCustomization)
+        let customization = UiCustomization(btnCustomizations: btnCustomizations, tbrCustomization: toolBarCustomization, lblCustomization: labelCustomization, txtBxCustomization: txtBxCustomization)
         
         return customization
         

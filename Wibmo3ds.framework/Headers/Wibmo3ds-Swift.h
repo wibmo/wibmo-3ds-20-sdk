@@ -231,7 +231,9 @@ SWIFT_CLASS("_TtC8Wibmo3ds13Customization")
 
 SWIFT_CLASS("_TtC8Wibmo3ds19ButtonCustomization")
 @interface ButtonCustomization : Customization
-- (nullable instancetype)init:(NSString * _Nullable)backgroundColor :(NSInteger)cornerRadius error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSString * _Nullable backgroundColor;
+@property (nonatomic) NSInteger cornerRadius;
+- (nullable instancetype)initWithBackgroundColor:(NSString * _Nullable)backgroundColor cornerRadius:(NSInteger)cornerRadius error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
 - (BOOL)setBackgroundColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
 - (BOOL)setCornerRadius:(NSInteger)cornerRadius error:(NSError * _Nullable * _Nullable)error;
 - (NSString * _Nullable)getBackgroundColor SWIFT_WARN_UNUSED_RESULT;
@@ -336,7 +338,10 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds24GenericChallengeProtocol_")
 
 SWIFT_CLASS("_TtC8Wibmo3ds18LabelCustomization")
 @interface LabelCustomization : Customization
-- (nullable instancetype)init:(NSString * _Nonnull)headingTxtFontName :(NSString * _Nullable)headingTxtColor :(NSInteger)headingTxtFontSize error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, copy) NSString * _Nullable headingTxtColor;
+@property (nonatomic, readonly, copy) NSString * _Nonnull headingTxtFontName;
+@property (nonatomic, readonly) NSInteger headingTxtFontSize;
+- (nullable instancetype)initWithTxtFontName:(NSString * _Nonnull)txtFontName txtColor:(NSString * _Nullable)txtColor txtFontSize:(NSInteger)txtFontSize error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
 - (BOOL)setHeadingTextFontName:(NSString * _Nonnull)fontName error:(NSError * _Nullable * _Nullable)error;
 - (BOOL)setHeadingTextColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
 - (BOOL)setHeadingTextFontSize:(NSInteger)fontSize error:(NSError * _Nullable * _Nullable)error;
@@ -451,7 +456,7 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds31SingleSelectorChallengeProtocol_")
 
 SWIFT_CLASS("_TtC8Wibmo3ds20TextBoxCustomization")
 @interface TextBoxCustomization : Customization
-- (nullable instancetype)init:(NSInteger)borderWidth :(NSInteger)cornerRadius :(NSString * _Nullable)borderColor error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithBorderWidth:(NSInteger)borderWidth cornerRadius:(NSInteger)cornerRadius borderColor:(NSString * _Nullable)borderColor error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
 - (BOOL)setBorderWidth:(NSInteger)borderWidth error:(NSError * _Nullable * _Nullable)error;
 - (NSInteger)getBorderWidth SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setBorderColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
@@ -490,6 +495,9 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds15ThreeDS2Service_")
 
 SWIFT_CLASS("_TtC8Wibmo3ds20ToolbarCustomization")
 @interface ToolbarCustomization : Customization
+@property (nonatomic, copy) NSString * _Nullable backgroundColor;
+@property (nonatomic, copy) NSString * _Nullable headerText;
+@property (nonatomic, copy) NSString * _Nullable buttonText;
 @end
 
 
@@ -523,7 +531,7 @@ SWIFT_CLASS("_TtC8Wibmo3ds15UiCustomization")
 @property (nonatomic, readonly, strong) ToolbarCustomization * _Nonnull tbrCustomization;
 @property (nonatomic, readonly, strong) LabelCustomization * _Nonnull lblCustomization;
 @property (nonatomic, readonly, strong) TextBoxCustomization * _Nonnull txtBxCustomization;
-- (nonnull instancetype)init:(NSDictionary<NSString *, ButtonCustomization *> * _Nonnull)btnCustomizations :(ToolbarCustomization * _Nonnull)tbrCustomization :(LabelCustomization * _Nonnull)lblCustomization :(TextBoxCustomization * _Nonnull)txtBxCustomization OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithBtnCustomizations:(NSDictionary<NSString *, ButtonCustomization *> * _Nonnull)btnCustomizations tbrCustomization:(ToolbarCustomization * _Nonnull)tbrCustomization lblCustomization:(LabelCustomization * _Nonnull)lblCustomization txtBxCustomization:(TextBoxCustomization * _Nonnull)txtBxCustomization OBJC_DESIGNATED_INITIALIZER;
 /// Sets the attributes of a ButtonCustomization object for an implementer-specific button type.
 - (BOOL)setButtonCustomization:(ButtonCustomization * _Nonnull)buttonCustomization :(enum ButtonTypeInt)buttonType error:(NSError * _Nullable * _Nullable)error;
 /// Sets the attributes of a ToolbarCustomization object.
@@ -841,7 +849,9 @@ SWIFT_CLASS("_TtC8Wibmo3ds13Customization")
 
 SWIFT_CLASS("_TtC8Wibmo3ds19ButtonCustomization")
 @interface ButtonCustomization : Customization
-- (nullable instancetype)init:(NSString * _Nullable)backgroundColor :(NSInteger)cornerRadius error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSString * _Nullable backgroundColor;
+@property (nonatomic) NSInteger cornerRadius;
+- (nullable instancetype)initWithBackgroundColor:(NSString * _Nullable)backgroundColor cornerRadius:(NSInteger)cornerRadius error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
 - (BOOL)setBackgroundColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
 - (BOOL)setCornerRadius:(NSInteger)cornerRadius error:(NSError * _Nullable * _Nullable)error;
 - (NSString * _Nullable)getBackgroundColor SWIFT_WARN_UNUSED_RESULT;
@@ -946,7 +956,10 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds24GenericChallengeProtocol_")
 
 SWIFT_CLASS("_TtC8Wibmo3ds18LabelCustomization")
 @interface LabelCustomization : Customization
-- (nullable instancetype)init:(NSString * _Nonnull)headingTxtFontName :(NSString * _Nullable)headingTxtColor :(NSInteger)headingTxtFontSize error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, copy) NSString * _Nullable headingTxtColor;
+@property (nonatomic, readonly, copy) NSString * _Nonnull headingTxtFontName;
+@property (nonatomic, readonly) NSInteger headingTxtFontSize;
+- (nullable instancetype)initWithTxtFontName:(NSString * _Nonnull)txtFontName txtColor:(NSString * _Nullable)txtColor txtFontSize:(NSInteger)txtFontSize error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
 - (BOOL)setHeadingTextFontName:(NSString * _Nonnull)fontName error:(NSError * _Nullable * _Nullable)error;
 - (BOOL)setHeadingTextColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
 - (BOOL)setHeadingTextFontSize:(NSInteger)fontSize error:(NSError * _Nullable * _Nullable)error;
@@ -1061,7 +1074,7 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds31SingleSelectorChallengeProtocol_")
 
 SWIFT_CLASS("_TtC8Wibmo3ds20TextBoxCustomization")
 @interface TextBoxCustomization : Customization
-- (nullable instancetype)init:(NSInteger)borderWidth :(NSInteger)cornerRadius :(NSString * _Nullable)borderColor error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithBorderWidth:(NSInteger)borderWidth cornerRadius:(NSInteger)cornerRadius borderColor:(NSString * _Nullable)borderColor error:(NSError * _Nullable * _Nullable)error OBJC_DESIGNATED_INITIALIZER;
 - (BOOL)setBorderWidth:(NSInteger)borderWidth error:(NSError * _Nullable * _Nullable)error;
 - (NSInteger)getBorderWidth SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setBorderColor:(NSString * _Nonnull)hexColorCode error:(NSError * _Nullable * _Nullable)error;
@@ -1100,6 +1113,9 @@ SWIFT_PROTOCOL("_TtP8Wibmo3ds15ThreeDS2Service_")
 
 SWIFT_CLASS("_TtC8Wibmo3ds20ToolbarCustomization")
 @interface ToolbarCustomization : Customization
+@property (nonatomic, copy) NSString * _Nullable backgroundColor;
+@property (nonatomic, copy) NSString * _Nullable headerText;
+@property (nonatomic, copy) NSString * _Nullable buttonText;
 @end
 
 
@@ -1133,7 +1149,7 @@ SWIFT_CLASS("_TtC8Wibmo3ds15UiCustomization")
 @property (nonatomic, readonly, strong) ToolbarCustomization * _Nonnull tbrCustomization;
 @property (nonatomic, readonly, strong) LabelCustomization * _Nonnull lblCustomization;
 @property (nonatomic, readonly, strong) TextBoxCustomization * _Nonnull txtBxCustomization;
-- (nonnull instancetype)init:(NSDictionary<NSString *, ButtonCustomization *> * _Nonnull)btnCustomizations :(ToolbarCustomization * _Nonnull)tbrCustomization :(LabelCustomization * _Nonnull)lblCustomization :(TextBoxCustomization * _Nonnull)txtBxCustomization OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithBtnCustomizations:(NSDictionary<NSString *, ButtonCustomization *> * _Nonnull)btnCustomizations tbrCustomization:(ToolbarCustomization * _Nonnull)tbrCustomization lblCustomization:(LabelCustomization * _Nonnull)lblCustomization txtBxCustomization:(TextBoxCustomization * _Nonnull)txtBxCustomization OBJC_DESIGNATED_INITIALIZER;
 /// Sets the attributes of a ButtonCustomization object for an implementer-specific button type.
 - (BOOL)setButtonCustomization:(ButtonCustomization * _Nonnull)buttonCustomization :(enum ButtonTypeInt)buttonType error:(NSError * _Nullable * _Nullable)error;
 /// Sets the attributes of a ToolbarCustomization object.
